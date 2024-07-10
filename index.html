@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Sheets Data</title>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script>
+        function start() {
+            gapi.client.init({
+                'apiKey': 'AIzaSyBC00cKdUujDh7z1UtO6MZyY9kqzHkSbKo',
+            }).then(function() {
+                return gapi.client.request({
+                    'path': 'https://sheets.googleapis.com/v4/spreadsheets/1-3iv25sOPYgUmMz8YaCOP3v1CYy5HvGEEvbO3ZC3IKY/values/Sheet1!A1:C10',
+                })
+            }).then(function(response) {
+                console.log(response.result);
+                displayData(response.result.values);
+            }, function(reason) {
+                console.log('Error: ' + reason.result.error.message);
+            });
+        }
+        gapi.load('client', start);
+
+        function displayData(data) {
+            var table = '<table border="1">';
+            data.forEach(function(row) {
+                table += '<tr>';
+                row.forEach(function(cell) {
+                    table += '<td>' + cell + '</td>';
+                });
+                table += '</tr>';
+            });
+            table += '</table>';
+            document.getElementById('content').innerHTML = table;
+        }
+    </script>
+</head>
+<body>
+    <form action="" name="submit-to-google-sheet">
+        <h1>Registration Form</h1>
+        <input type="text" name="Name" placeholder="Enter your name"><br><br>
+        <input type="email" name="Gmail" placeholder="Enter your Gmail"><br><br>
+        <input type="tel" name="Phone" placeholder="Enter your mobile number"><br><br>
+        <input type="submit">
+    </form>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwJG2qIWQkx9SjtM22HpzPpAU52By44ZLGIluvRGJ6gl6N-cxshtKkMmm-DxFi7yAC4/exec'
+        const form = document.forms['submit-to-google-sheet']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    console.log('Success!', response)
+                    alert("Registration successfully submitted");
+                    form.reset();
+                    start(); 
+                })
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+    <h1>Google Sheets Data</h1>
+    <div id="content"></div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact form</title>
+    <script src="https://kit.fontawesome.com/77be23e273.js" crossorigin="anonymous"></script>
+    <style>
+        body{
+            display: flex;
+            margin-top:200px;
+            justify-content: center;
+        }
+       .container{
+        /* width: 50%; */
+        width: 700px;
+        height: 400px;
+        display: flex;
+        flex-direction: row;
+        border: 2px solid black;
+        align-items: center;
+        /* justify-content: space-between; */
+
+       }
+        label{
+            display: block;
+        }
+        .right{
+            width: 350px;
+            padding: 20px;
+        }
+        .left{
+            padding: 20px;
+            width: 350px;
+        }
+        input{
+            width:200px ;
+        }
+        textarea{
+            width: 200px;
+        }
+        .socila_media_icons{
+            width: 150px;
+            /* background-color: aqua; */
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .fa-brands{
+            width: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <h1>Your Company Name</h1>
+            <h4>Gmail:yourcompany@gmail.com</h4>
+            <h4>Your Address </h4>
+            <div class="socila_media_icons">
+                <a href=""><i class="fa-brands fa-instagram"></i></a>
+                <a href=""><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href=""><i class="fa-brands fa-github"></i></a>
+                <a href=""><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+
+        </div>
+        <div class="right">
+            <h2>Contact Us</h2>
+            <form action="">
+                <label for="">Name</label>
+                <input type="text" placeholder="Enter your name" required><br>
+                <label for="">Gmail</label>
+                <input type="email" placeholder="Enter your Gmail" required><br>
+                <label for="">Message</label>
+                <textarea name="" id="" rows="5" required></textarea><br>
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
